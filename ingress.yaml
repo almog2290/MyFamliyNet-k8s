@@ -1,0 +1,25 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: keycloak
+  namespace: my-family-net
+  annotations:
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`www.keycloakmyfamilynet.local.moglidev.xyz`)
+      kind: Rule
+      services:
+        - name: keycloak
+          port: 8080
+    - match: Host(`keycloakmyfamilynet.local.moglidev.xyz`)
+      kind: Rule
+      services:
+        - name: keycloak
+          port: 8080
+
+#  tls:
+#    secretName: keycloak-myfamilynet-local-moglidev-xyz-tls
