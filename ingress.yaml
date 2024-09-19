@@ -13,12 +13,12 @@ spec:
     - match: Host(`www.keycloakmyfamilynet.local.moglidev.xyz`)
       kind: Rule
       services:
-        - name: keycloak
+        - name: keycloak-svc
           port: 8080
     - match: Host(`keycloakmyfamilynet.local.moglidev.xyz`)
       kind: Rule
       services:
-        - name: keycloak
+        - name: keycloak-svc
           port: 8080
 
 #  tls:
