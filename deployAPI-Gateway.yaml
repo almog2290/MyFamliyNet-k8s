@@ -49,7 +49,9 @@ spec:
             configMapKeyRef:
               name: my-family-net-config
               key: DAPR_URL_GATEWAY
-        resources:  
+        resources:
+    imagePullSecrets:
+    - name: registry-moglidev-xyz-secret  
 ---
 apiVersion: v1
 kind: Service

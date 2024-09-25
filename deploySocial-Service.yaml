@@ -44,8 +44,9 @@ spec:
             configMapKeyRef:
               name: my-family-net-config
               key: REALM_NAME
-
         resources:
+    imagePullSecrets:
+    - name: registry-moglidev-xyz-secret
 ---
 apiVersion: v1
 kind: Service
