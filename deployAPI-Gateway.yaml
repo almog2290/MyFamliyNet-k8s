@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  namespace: my-family-net
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "api-gateway"
+        dapr.io/app-port: ${SERVER_PORT_GATEWAY}
+        dapr.io/sidecar-http-port: ${DAPR_PORT_GATEWAY}
+    spec:
+      containers:
+      - name: api-gateway
+        image: registry.moglidev.xyz/my-family-net-api-gateway:1.0.0-Dev
+        ports:
+        - containerPort: 5000
+        env:
+        - name: SERVER_PORT_GATEWAY
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: SERVER_PORT_GATEWAY
+        - name: DAPR_PORT_GATEWAY
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: DAPR_PORT_GATEWAY
+        - name: KEYCLOAK_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: KEYCLOAK_HOST
+        - name: REALM_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: REALM_NAME
+        - name: DAPR_URL_GATEWAY
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: DAPR_URL_GATEWAY
+        resources:  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway-svc
+  namespace: my-family-net
+spec:
+  ports:
+  - port: 5000
+    targetPort: 5000
+  selector:
+    app: api-gateway

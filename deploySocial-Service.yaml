@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: social
+  namespace: my-family-net
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: social
+  template:
+    metadata:
+      labels:
+        app: social
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "social-service"
+        dapr.io/app-port: ${SERVER_PORT_SOCIAL}
+        dapr.io/sidecar-http-port: ${DAPR_PORT_SOCIAL}
+    spec:
+      containers:
+      - name: social-service
+        image: registry.moglidev.xyz/my-family-net-api-social-svc:1.0.0-Dev
+        ports:
+        - containerPort: 5002
+        env:
+        - name: SERVER_PORT_SOCIAL
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: SERVER_PORT_SOCIAL
+        - name: DAPR_PORT_SOCIAL
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: DAPR_PORT_SOCIAL
+        - name: KEYCLOAK_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: KEYCLOAK_HOST
+        - name: REALM_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: REALM_NAME
+
+        resources:
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: social-svc
+  namespace: my-family-net
+spec:
+  ports:
+  - port: 5002
+    targetPort: 5002
+  selector:
+    app: social

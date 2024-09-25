@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-family-net-config
+  namespace: my-family-net
+data:
+  REALM_NAME: my-family-net
+  KEYCLOAK_HOST: keycloak-svc.my-family-net.svc.cluster.local:8080
+  SERVER_PORT_GATEWAY: "5000"
+  SERVER_PORT_SOCIAL: "5002"
+  DAPR_PORT_GATEWAY: "3500"
+  DAPR_URL_GATEWAY: http://localhost:3500
+  DAPR_PORT_SOCIAL: "3501"
+  DAPR_URL_SOCIAL: http://localhost:3501
+
