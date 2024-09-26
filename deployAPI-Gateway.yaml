@@ -21,6 +21,7 @@ spec:
       containers:
       - name: api-gateway
         image: registry.moglidev.xyz/my-family-net-api-gateway:1.0.0-Dev
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
         env:
