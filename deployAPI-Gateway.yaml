@@ -60,8 +60,9 @@ metadata:
   name: api-gateway-svc
   namespace: my-family-net
 spec:
+  type: LoadBalancer
+  selector:
+    app: api-gateway
   ports:
   - port: 5000
     targetPort: 5000
-  selector:
-    app: api-gateway
