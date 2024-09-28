@@ -15,8 +15,8 @@ spec:
       annotations:
         dapr.io/enabled: "true"
         dapr.io/app-id: "social-service"
-        dapr.io/app-port: ${SERVER_PORT_SOCIAL}
-        dapr.io/sidecar-http-port: ${DAPR_PORT_SOCIAL}
+        dapr.io/app-port: "5002"
+        dapr.io/sidecar-http-port: "3501"
     spec:
       containers:
       - name: social-service
