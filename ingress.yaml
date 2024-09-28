@@ -21,5 +21,5 @@ spec:
         - name: keycloak-svc
           port: 8080
 
-#  tls:
-#    secretName: keycloak-myfamilynet-local-moglidev-xyz-tls
+  tls:
+    secretName: keycloak-myfamilynet-local-moglidev-xyz-production-tls
