@@ -4,6 +4,12 @@ metadata:
   name: my-family-net-config
   namespace: my-family-net
 data:
+  ############################# Front-End #######################################
+  VITE_APP_API_URL: api-gateway-svc.my-family-net.svc.cluster.local:5000
+  VITE_KEYCLOAK_URL: https://keycloakmyfamilynet.local.moglidev.xyz
+  VITE_KEYCLOAK_REALM: my-family-net
+  VITE_KEYCLOAK_CLIENT_ID: my-family-net-app
+  ############################# Micro-Services ###################################
   REALM_NAME: my-family-net
   KEYCLOAK_HOST: https://keycloakmyfamilynet.local.moglidev.xyz
   SERVER_PORT_GATEWAY: "5000"
@@ -12,4 +18,5 @@ data:
   DAPR_URL_GATEWAY: http://localhost:3500
   DAPR_PORT_SOCIAL: "3501"
   DAPR_URL_SOCIAL: http://localhost:3501
+
 
