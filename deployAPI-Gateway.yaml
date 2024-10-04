@@ -50,6 +50,11 @@ spec:
             configMapKeyRef:
               name: my-family-net-config
               key: DAPR_URL_GATEWAY
+        - name: CORS_ORIGINS
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: APP_CORS_ORIGINS
         resources:
       imagePullSecrets:
       - name: registry-moglidev-xyz-secret
