@@ -5,7 +5,7 @@ metadata:
   namespace: my-family-net
 data:
   ############################# Front-End #######################################
-  VITE_APP_API_URL: api-gateway-svc.my-family-net.svc.cluster.local:5000
+  VITE_APP_API_URL: api-gateway-svc.my-family-net.svc.cluster.local
   VITE_KEYCLOAK_URL: https://keycloakmyfamilynet.local.moglidev.xyz
   VITE_KEYCLOAK_REALM: my-family-net
   VITE_KEYCLOAK_CLIENT_ID: my-family-net-app

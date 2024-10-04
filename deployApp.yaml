@@ -52,7 +52,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: api
+    app: app
   ports:
   - port: 3080
     targetPort: 3000
