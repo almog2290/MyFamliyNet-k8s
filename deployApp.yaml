@@ -15,16 +15,16 @@ spec:
     spec:
       containers:
       - name: app-react-front
-        image: registry.moglidev.xyz/my-family-net-app:1.0.0-Dev
+        image: registry.moglidev.xyz/my-family-net-app:1.0.0-Dev-buildX
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:
-        - name: VITE_APP_API_URL
+        - name: VITE_APP_API_IP
           valueFrom:
             configMapKeyRef:
               name: my-family-net-config
-              key: VITE_APP_API_URL
+              key: VITE_APP_API_IP
         - name: VITE_KEYCLOAK_URL
           valueFrom:
             configMapKeyRef:
