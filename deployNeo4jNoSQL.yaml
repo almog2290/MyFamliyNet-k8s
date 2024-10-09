@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neo4j-deploy
+  namespace: my-family-net
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neo4j
+  template:
+    metadata:
+      labels:
+        app: neo4j
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: neo4j-node
+                operator: In
+                values:
+                - "true"
+      containers:
+      - name: neo4j
+        image: neo4j
+        env:
+        - name: NEO4J_AUTH
+          valueFrom:
+            secretKeyRef:
+              name: neo4j-myfamilynet-secret
+              key: NEO4J_AUTH
+        - name: NEO4J_server_config_strict__validation_enabled
+          value: "false"
+        ports:
+        - containerPort: 7474
+        - containerPort: 7687
+        resources:
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: logs
+          mountPath: /logs
+        - name: conf
+          mountPath: /conf
+      volumes:
+      - name: data
+        hostPath:
+          path: /home/neo4j/data
+      - name: logs
+        hostPath:
+          path: /home/neo4j/logs
+      - name: conf
+        hostPath:
+          path: /home/neo4j/conf
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: neo4j-svc
+spec:
+  selector:
+    app: neo4j
+  type : LoadBalancer
+  ports:
+  - name: http
+    protocol: TCP
+    port: 7474
+    targetPort: 7474
+  - name: bolt
+    protocol: TCP
+    port: 7687
+    targetPort: 7687
