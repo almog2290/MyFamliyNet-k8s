@@ -19,5 +19,7 @@ data:
   DAPR_PORT_SOCIAL: "3501"
   DAPR_URL_SOCIAL: http://localhost:3501
   APP_CORS_ORIGINS: http://40.0.0.83:3080
+  NEO4J_HOST: neo4j://40.0.0.82:7687
+  
 
 
