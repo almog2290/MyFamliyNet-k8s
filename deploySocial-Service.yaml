@@ -45,6 +45,21 @@ spec:
             configMapKeyRef:
               name: my-family-net-config
               key: REALM_NAME
+        - name: NEO4J_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: NEO4J_HOST
+        - name: NEO4J_USER
+          valueFrom:
+            secretKeyRef:
+              name: neo4j-myfamilynet-secret
+              key: NEO4J_USER
+        - name: NEO4J_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: neo4j-myfamilynet-secret
+              key: NEO4J_PASSWORD
         resources:
       imagePullSecrets:
       - name: registry-moglidev-xyz-secret
