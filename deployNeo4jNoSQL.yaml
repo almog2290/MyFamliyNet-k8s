@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: neo4j-deploy
+  name: neo4j
   namespace: my-family-net
 spec:
   replicas: 1
