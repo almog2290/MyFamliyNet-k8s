@@ -24,7 +24,7 @@ spec:
                 - "true"
       containers:
       - name: neo4j
-        image: neo4j
+        image: neo4j:5.24-community
         env:
         - name: NEO4J_AUTH
           valueFrom:
