@@ -1,0 +1,16 @@
+neo4j:
+  name: "neo4j-server"
+  passwordFromSecret: "neo4j-secrets"
+
+resources:
+  cpu: "0.5"
+  memory: "2Gi"
+
+volumes:
+  data:
+    mode: "defaultStorageClass"
+    defaultStorageClass:
+      accessModes:
+        - ReadWriteOnce
+      requests:
+        storage: 4Gi
