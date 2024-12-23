@@ -15,7 +15,7 @@ pipeline{
 
         stage('Checkout for SCM'){
             steps{
-                git branch: 'main', credentialsId: 'github-jenkins', url: 'https://github.com/almog2290/MyFamliyNet-k8s.git'
+                git branch: 'main', credentialsId: 'github_jenkins', url: 'https://github.com/almog2290/MyFamliyNet-k8s.git'
             }
         }
 
@@ -24,7 +24,7 @@ pipeline{
                 script{
                     sh """
                         cat deployAPI-Gateway.yaml
-                        sed -i 's/${APP_NAME}.*/${APP_NAME}:{IMAGE_TAG}/g' deployAPI-Gateway.yaml
+                        sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployAPI-Gateway.yaml
                         cat deployAPI-Gateway.yaml
                     """
                 }
@@ -42,7 +42,7 @@ pipeline{
                         git commit -m "Update the deployment file for ${APP_NAME}"
                     """
 
-                    withCredentials([gitUsernamePassword(credentialsId: 'github-jenkins', gitToolName: 'default')]) {       
+                    withCredentials([gitUsernamePassword(credentialsId: 'github_jenkins', gitToolName: 'default')]) {       
                         sh "git push https://github.com/almog2290/MyFamliyNet-k8s.git main"
                     }
 
