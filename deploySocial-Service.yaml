@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: social-service
-        image: registry.moglidev.xyz/my-family-net-api-social-svc:1.0.0-JENKINS-23
+        image: registry.moglidev.xyz/my-family-net-api-social-svc:1.0.0-JENKINS-39
         imagePullPolicy: Always
         ports:
         - containerPort: 5002
