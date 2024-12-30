@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: registry.moglidev.xyz/my-family-net-api-gateway:1.0.0-JENKINS-58
+        image: registry.moglidev.xyz/my-family-net-api-gateway:1.0.0-JENKINS-92
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
