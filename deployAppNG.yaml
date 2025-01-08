@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-ng
+  namespace: my-family-net
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-ng
+  template:
+    metadata:
+      labels:
+        app: app-ng
+    spec:
+      containers:
+      - name: app-react-front-ng
+        image: registry.moglidev.xyz/my-family-net-front-ng:lastest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: APP_API_IP
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: VITE_APP_API_IP
+        - name: APP_KEYCLOAK_URL
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: VITE_KEYCLOAK_URL
+        - name: APP_KEYCLOAK_REALM
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: VITE_KEYCLOAK_REALM
+        - name: APP_KEYCLOAK_CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              name: my-family-net-config
+              key: VITE_KEYCLOAK_CLIENT_ID
+        resources:
+      imagePullSecrets:
+      - name: registry-moglidev-xyz-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-ng-svc
+  namespace: my-family-net
+spec:
+  type: LoadBalancer
+  selector:
+    app: app-ng
+  ports:
+  - port: 80
+    targetPort: 80
