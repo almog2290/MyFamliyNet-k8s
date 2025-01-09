@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: app-react-front-ng
-        image: registry.moglidev.xyz/my-family-net-front-ng:lastest
+        image: registry.moglidev.xyz/my-family-net-front-ng:1.0.0-18
         imagePullPolicy: Always
         ports:
         - containerPort: 80
