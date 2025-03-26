@@ -18,8 +18,5 @@ Services Involved right now:
 ![Expose Neo4j Database](./images/present_4.png)
 ![Neo4j Database](./images/present_5.png)
 
-### Video Demonstration
-
-[Watch the video demonstration](./videos/BasicSetupServices.mp4)
 
 
